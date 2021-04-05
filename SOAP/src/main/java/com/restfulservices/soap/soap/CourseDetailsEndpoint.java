@@ -22,6 +22,8 @@ public class CourseDetailsEndpoint {
     @ResponsePayload
     public GetCourseDetailsResponse processDetailsRequest(@RequestPayload GetCourseDetailsRequest request) {
         Course course = service.findById(request.getId());
+        if (course == null)
+            throw new CourseNotFoundException("Invalid Course id " + request.getId());
 
         return mapCourse(course);
     }
@@ -44,7 +46,6 @@ public class CourseDetailsEndpoint {
         return response;
     }
 
-
     private GetCourseDetailsResponse mapCourse(Course course) {
         GetCourseDetailsResponse response = new GetCourseDetailsResponse();
         CourseDetails courseDetails = mapCourseDetails(course);
@@ -63,7 +64,6 @@ public class CourseDetailsEndpoint {
 
     private GetAllCourseDetailsResponse mapCourseDetails(List<Course> courses) {
         CourseDetails courseDetails = new CourseDetails();
-
         GetAllCourseDetailsResponse response = new GetAllCourseDetailsResponse();
 
         courses.forEach(course -> {
