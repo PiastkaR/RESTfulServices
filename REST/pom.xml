@@ -14,5 +14,10 @@
     <artifactId>REST</artifactId>
     <version>1.0</version>
 
+    <dependencies>
+        <!--        Spring Boot dependencies -->
 
+
+        <!--        Other dependencies -->
+    </dependencies>
 </project>
