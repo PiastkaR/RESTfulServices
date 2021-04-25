@@ -36,9 +36,13 @@ public class UserResource {
         //"all-users", SERVER_PATH + "/users"
         //retrieveAllUsers from link
         EntityModel<User> resource = EntityModel.of(user); //moge dac Resource zwykly
-        WebMvcLinkBuilder linkTo =
+        WebMvcLinkBuilder linkToAllUsers =
                 linkTo(methodOn(this.getClass()).retrieveAllUsers());
-        resource.add(linkTo.withRel("all-users"));
+        WebMvcLinkBuilder linkToDeleteUser =
+                linkTo(methodOn(this.getClass()).deleteUser(id));
+
+        resource.add(linkToAllUsers.withRel("all-users"));
+        resource.add(linkToDeleteUser.withRel("delete-user"));
 
         //HATEOAS
         return resource;
