@@ -9,3 +9,9 @@ spring:
       write-dates-as-timestamps: false
   messages:
     basename: messages
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
