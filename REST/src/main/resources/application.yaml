@@ -9,6 +9,10 @@ spring:
       write-dates-as-timestamps: false
   messages:
     basename: messages
+  security:
+    user:
+      name: "user"
+      password: "824a0fa4"
 
 management:
   endpoints:
