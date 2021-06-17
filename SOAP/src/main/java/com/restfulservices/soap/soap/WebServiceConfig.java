@@ -7,16 +7,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurerAdapter;
-import org.springframework.ws.server.EndpointInterceptor;
-import org.springframework.ws.soap.security.xwss.XwsSecurityInterceptor;
-import org.springframework.ws.soap.security.xwss.callback.SimplePasswordValidationCallbackHandler;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
-
-import java.util.Collections;
-import java.util.List;
 
 @Configuration
 @EnableWs
@@ -51,26 +45,26 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 
 
     //SECURITY
-    @Bean
-    public XwsSecurityInterceptor securityInterceptor() {
-        XwsSecurityInterceptor securityInterceptor = new XwsSecurityInterceptor();
-        securityInterceptor.setCallbackHandler(callbackHandler());
-        securityInterceptor.setPolicyConfiguration(new ClassPathResource("securityPolicy.xml"));
+//    @Bean
+//    public XwsSecurityInterceptor securityInterceptor() {
+//        XwsSecurityInterceptor securityInterceptor = new XwsSecurityInterceptor();
+//        securityInterceptor.setCallbackHandler(callbackHandler());
+//        securityInterceptor.setPolicyConfiguration(new ClassPathResource("securityPolicy.xml"));
+//
+//        return securityInterceptor;
+//    }
 
-        return securityInterceptor;
-    }
+//    @Override
+//    public void addInterceptors(List<EndpointInterceptor> interceptors) {
+//        interceptors.add(securityInterceptor());
+//    }
 
-    @Override
-    public void addInterceptors(List<EndpointInterceptor> interceptors) {
-        interceptors.add(securityInterceptor());
-    }
-
-    @Bean
-    public SimplePasswordValidationCallbackHandler callbackHandler() {
-        SimplePasswordValidationCallbackHandler handler = new SimplePasswordValidationCallbackHandler();
-        handler.setUsersMap(Collections.singletonMap("user", "password"));
-
-        return handler;
-    }
+//    @Bean
+//    public SimplePasswordValidationCallbackHandler callbackHandler() {
+//        SimplePasswordValidationCallbackHandler handler = new SimplePasswordValidationCallbackHandler();
+//        handler.setUsersMap(Collections.singletonMap("user", "password"));
+//
+//        return handler;
+//    }
 
 }
